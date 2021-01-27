@@ -14,7 +14,7 @@ npm install -S @jswork/next-plugin-manager
 ## apis
 | api        | params           | description                                           |
 | ---------- | ---------------- | ----------------------------------------------------- |
-| entities   | -                | Property, memorty entities.                           |
+| entities   | -                | Property, Memorty data sturcture.                               |
 | register   | inEntity         | Method, Add a plugin.                                 |
 | unregister | inName           | Method, Remove a plugin by name.                      |
 | plugins    | -                | Method, Get all enabled plugin.                       |
@@ -31,7 +31,7 @@ npm install -S @jswork/next-plugin-manager
 ```js
 import NxPluginManager from '@jswork/next-plugin-manager';
 
-NxPluginManager.entities();
+NxPluginManager.entities;
 NxPluginManager.register();
 NxPluginManager.unregister();
 // ...
