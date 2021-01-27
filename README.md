@@ -33,8 +33,9 @@ npm install -S @jswork/next-plugin-manager
 ```js
 import NxPluginManager from '@jswork/next-plugin-manager';
 
-NxPluginManager.register();
-NxPluginManager.unregister();
+const manager = NxPluginManager.getInstance();
+manager.register();
+manager.unregister();
 // ...
 ```
 
