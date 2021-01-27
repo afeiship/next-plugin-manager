@@ -3,7 +3,7 @@
  * description: Plugin manager for next.
  * homepage: https://github.com/afeiship/next-plugin-manager
  * version: 1.0.1
- * date: 2021-01-27 10:37:18
+ * date: 2021-01-27 10:38:46
  * license: MIT
  */
 
@@ -46,6 +46,10 @@
       disable: function (inName) {
         var target = this.get(inName);
         target.disabled = true;
+      },
+      toggle: function (inName) {
+        var target = this.get(inName);
+        target.disabled = !target.disabled;
       },
       update: function (inName, inObject) {
         var target = this.get(inName);

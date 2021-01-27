@@ -20,6 +20,7 @@ npm install -S @jswork/next-plugin-manager
 | disabled   | -                | Get all disabled plugin.                      |
 | enable     | inName           | Active a plugin.                              |
 | disable    | inName           | Deactive a plugin.                            |
+| toggle     | inName           | Active/Deactive a plugin auto.                |
 | update     | inName, inObject | Update a plugin.                              |
 | updates    | inObject         | Update multiple plugins.                      |
 | has        | inName           | Check if a plugin exists.                     |

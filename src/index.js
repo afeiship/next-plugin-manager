@@ -38,6 +38,10 @@
         var target = this.get(inName);
         target.disabled = true;
       },
+      toggle: function (inName) {
+        var target = this.get(inName);
+        target.disabled = !target.disabled;
+      },
       update: function (inName, inObject) {
         var target = this.get(inName);
         nx.mix(target, inObject);

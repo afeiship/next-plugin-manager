@@ -62,6 +62,19 @@
       expect(entities).toEqual([{ disabled: true, name: 'p1', value: 1 }]);
     });
 
+
+    test('api:toggle', () => {
+      NxPluginManager.register({
+        name: 'p1',
+        value: 1
+      });
+
+      NxPluginManager.toggle('p1');
+      expect(NxPluginManager.gets()).toEqual([{ disabled: true, name: 'p1', value: 1 }]);
+      NxPluginManager.toggle('p1');
+      expect(NxPluginManager.gets()).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
+    });
+
     test('api:enable', () => {
       NxPluginManager.register({
         name: 'p1',
