@@ -2,8 +2,8 @@
  * name: @jswork/next-plugin-manager
  * description: Plugin manager for next.
  * homepage: https://github.com/afeiship/next-plugin-manager
- * version: 1.0.0
- * date: 2021-01-27 10:36:38
+ * version: 1.0.1
+ * date: 2021-01-27 10:37:18
  * license: MIT
  */
 

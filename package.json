@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-plugin-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin manager for next.",
   "homepage": "https://github.com/afeiship/next-plugin-manager",
   "author": {
@@ -36,13 +36,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "keywords": [
-    "next",
-    "slate",
-    "rte",
     "plugin",
     "manager",
-    "editor",
-    "rich",
-    "rich-text"
+    "editor"
   ]
 }
