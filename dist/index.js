@@ -3,13 +3,14 @@
  * description: Plugin manager for next.
  * homepage: https://github.com/afeiship/next-plugin-manager
  * version: 1.0.2
- * date: 2021-01-27 10:40:51
+ * date: 2021-01-27 17:05:09
  * license: MIT
  */
 
 (function () {
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
+  var nxStubSingleton = nx.stubSingleton || require('@jswork/next-stub-singleton');
   var DEFAULT_ENTITY = { disabled: false };
   var stubEntity = function (inName, inEntity) {
     return nx.mix(null, DEFAULT_ENTITY, { name: inName }, inEntity);
@@ -17,7 +18,14 @@
 
   var NxPluginManager = nx.declare('nx.PluginManager', {
     statics: {
-      entities: [],
+      init: function () {
+        nx.mix(this, nxStubSingleton());
+      }
+    },
+    methods: {
+      init: function (inData) {
+        this.entities = inData || [];
+      },
       register: function (inEntity) {
         if (!this.has(inEntity.name)) {
           this.entities.push(stubEntity(inEntity.name, inEntity));

@@ -1,6 +1,7 @@
 (function () {
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
+  var nxStubSingleton = nx.stubSingleton || require('@jswork/next-stub-singleton');
   var DEFAULT_ENTITY = { disabled: false };
   var stubEntity = function (inName, inEntity) {
     return nx.mix(null, DEFAULT_ENTITY, { name: inName }, inEntity);
@@ -8,7 +9,14 @@
 
   var NxPluginManager = nx.declare('nx.PluginManager', {
     statics: {
-      entities: [],
+      init: function () {
+        nx.mix(this, nxStubSingleton());
+      }
+    },
+    methods: {
+      init: function (inData) {
+        this.entities = inData || [];
+      },
       register: function (inEntity) {
         if (!this.has(inEntity.name)) {
           this.entities.push(stubEntity(inEntity.name, inEntity));

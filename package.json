@@ -39,5 +39,8 @@
     "plugin",
     "manager",
     "editor"
-  ]
+  ],
+  "dependencies": {
+    "@jswork/next-stub-singleton": "^1.0.2"
+  }
 }

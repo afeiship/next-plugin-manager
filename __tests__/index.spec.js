@@ -1,32 +1,33 @@
 (function () {
   const NxPluginManager = require('../src');
+  const mgr = NxPluginManager.getInstance();
 
-  describe('NxPluginManager.methods', function () {
+  describe('mgr.methods', function () {
     beforeEach(function () {
-      NxPluginManager.empty();
+      mgr.empty();
     });
 
     test('api:register - single', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([{ name: 'p1', value: 1, disabled: false }]);
     });
 
     test('api:register - multiple', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([
         { disabled: false, name: 'p1', value: 1 },
         { disabled: false, name: 'p2', value: 2 }
@@ -34,93 +35,92 @@
     });
 
     test('api:unregister', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
 
-      NxPluginManager.unregister('p2');
+      mgr.unregister('p2');
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
     });
 
     test('api:disable', () => {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.disable('p1');
+      mgr.disable('p1');
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([{ disabled: true, name: 'p1', value: 1 }]);
     });
 
-
     test('api:toggle', () => {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.toggle('p1');
-      expect(NxPluginManager.gets()).toEqual([{ disabled: true, name: 'p1', value: 1 }]);
-      NxPluginManager.toggle('p1');
-      expect(NxPluginManager.gets()).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
+      mgr.toggle('p1');
+      expect(mgr.gets()).toEqual([{ disabled: true, name: 'p1', value: 1 }]);
+      mgr.toggle('p1');
+      expect(mgr.gets()).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
     });
 
     test('api:enable', () => {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1,
         disabled: true
       });
 
-      NxPluginManager.enable('p1');
+      mgr.enable('p1');
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
     });
 
     test('api:update', () => {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1,
         disabled: true
       });
 
-      NxPluginManager.update('p1', {
+      mgr.update('p1', {
         disabled: false
       });
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([{ disabled: false, name: 'p1', value: 1 }]);
     });
 
     test('api:updates', () => {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1,
         disabled: true
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
 
-      NxPluginManager.updates({
+      mgr.updates({
         p1: { value: 'vv1' },
         p2: { disabled: true }
       });
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([
         { disabled: true, name: 'p1', value: 'vv1' },
         { disabled: true, name: 'p2', value: 2 }
@@ -128,22 +128,22 @@
     });
 
     test('api:set', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
 
-      NxPluginManager.set('p2', {
+      mgr.set('p2', {
         value: 'vv2',
         disabled: true
       });
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([
         { disabled: false, name: 'p1', value: 1 },
         { disabled: true, name: 'p2', value: 'vv2' }
@@ -151,22 +151,22 @@
     });
 
     test('api:sets', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
 
-      NxPluginManager.sets({
+      mgr.sets({
         p1: { value: 'vv1' },
         p2: { value: 'vv2', disabled: true }
       });
 
-      const entities = NxPluginManager.gets();
+      const entities = mgr.gets();
       expect(entities).toEqual([
         { disabled: false, name: 'p1', value: 'vv1' },
         { disabled: true, name: 'p2', value: 'vv2' }
@@ -174,58 +174,58 @@
     });
 
     test('api:get', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
-      expect(NxPluginManager.get('p1')).toEqual({ disabled: false, name: 'p1', value: 1 });
-      expect(NxPluginManager.get('p2')).toEqual({ disabled: false, name: 'p2', value: 2 });
+      expect(mgr.get('p1')).toEqual({ disabled: false, name: 'p1', value: 1 });
+      expect(mgr.get('p2')).toEqual({ disabled: false, name: 'p2', value: 2 });
     });
 
     test('api:gets', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
-      expect(NxPluginManager.gets()).toEqual([
+      expect(mgr.gets()).toEqual([
         { disabled: false, name: 'p1', value: 1 },
         { disabled: false, name: 'p2', value: 2 }
       ]);
     });
 
     test('api:plugins - enabled/disabled', function () {
-      NxPluginManager.register({
+      mgr.register({
         name: 'p1',
         value: 1
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p2',
         value: 2
       });
 
-      NxPluginManager.register({
+      mgr.register({
         name: 'p3',
         value: 3,
         disabled: true
       });
 
-      expect(NxPluginManager.enabled()).toEqual([
+      expect(mgr.enabled()).toEqual([
         { disabled: false, name: 'p1', value: 1 },
         { disabled: false, name: 'p2', value: 2 }
       ]);
 
-      expect(NxPluginManager.disabled()).toEqual([{ name: 'p3', value: 3, disabled: true }]);
+      expect(mgr.disabled()).toEqual([{ name: 'p3', value: 3, disabled: true }]);
     });
   });
 })();
