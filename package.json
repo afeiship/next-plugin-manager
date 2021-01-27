@@ -34,5 +34,15 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "keywords": [
+    "next",
+    "slate",
+    "rte",
+    "plugin",
+    "manager",
+    "editor",
+    "rich",
+    "rich-text"
+  ]
 }
