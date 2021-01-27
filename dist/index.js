@@ -1,3 +1,12 @@
+/*!
+ * name: @jswork/next-plugin-manager
+ * description: Plugin manager for next.
+ * homepage: https://github.com/afeiship/next-plugin-manager
+ * version: 1.0.0
+ * date: 2021-01-27 09:43:30
+ * license: MIT
+ */
+
 (function () {
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
@@ -28,10 +37,6 @@
       disable: function (inName) {
         var target = this.get(inName);
         target.disabled = true;
-      },
-      update: function (inName, inObject) {
-        var target = this.get(inName);
-        nx.mix(target, inObject);
       },
       has: function (inName) {
         return !!this.get(inName);

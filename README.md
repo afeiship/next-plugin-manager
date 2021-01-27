@@ -1,5 +1,5 @@
-# next-slate-rte-plugin
-> Slate rte plugin manager.
+# next-plugin-manager
+> Plugin manager for next.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -8,32 +8,46 @@
 
 ## installation
 ```bash
-npm install -S @jswork/next-slate-rte-plugin
+npm install -S @jswork/next-plugin-manager
 ```
 
 ## apis
-| api | params | description   |
-|-----|--------|---------------|
-| get | -      | desc balabala |
+| api        | params           | description                                           |
+| ---------- | ---------------- | ----------------------------------------------------- |
+| entities   | -                | Property, memorty entities.                           |
+| register   | inEntity         | Method, Add a plugin.                                 |
+| unregister | inName           | Method, Remove a plugin by name.                      |
+| plugins    | -                | Method, Get all enabled plugin.                       |
+| enable     | inName           | Method, Active a plugin.                              |
+| disable    | inName           | Method, Deactive a plugin.                            |
+| has        | inName           | Method, Check if a plugin exists.                     |
+| update     | inName, inObject | Method, Update a plugin.                              |
+| set        | inName, inEntity | Method, Set plugin to new value.                      |
+| get        | inName           | Method, Get a plugin by name.                         |
+| sets       | inObject         | Method, Multiple set.                                 |
+| gets       | -                | Method, Get all registered plugins(include disabled). |
 
 ## usage
 ```js
-import NxSlateRtePlugin from '@jswork/next-slate-rte-plugin';
+import NxPluginManager from '@jswork/next-plugin-manager';
 
-// code goes here:
+NxPluginManager.entities();
+NxPluginManager.register();
+NxPluginManager.unregister();
+// ...
 ```
 
 ## license
-Code released under [the MIT license](https://github.com/afeiship/next-slate-rte-plugin/blob/master/LICENSE.txt).
+Code released under [the MIT license](https://github.com/afeiship/next-plugin-manager/blob/master/LICENSE.txt).
 
-[version-image]: https://img.shields.io/npm/v/@jswork/next-slate-rte-plugin
-[version-url]: https://npmjs.org/package/@jswork/next-slate-rte-plugin
+[version-image]: https://img.shields.io/npm/v/@jswork/next-plugin-manager
+[version-url]: https://npmjs.org/package/@jswork/next-plugin-manager
 
-[license-image]: https://img.shields.io/npm/l/@jswork/next-slate-rte-plugin
-[license-url]: https://github.com/afeiship/next-slate-rte-plugin/blob/master/LICENSE.txt
+[license-image]: https://img.shields.io/npm/l/@jswork/next-plugin-manager
+[license-url]: https://github.com/afeiship/next-plugin-manager/blob/master/LICENSE.txt
 
-[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/next-slate-rte-plugin
-[size-url]: https://github.com/afeiship/next-slate-rte-plugin/blob/master/dist/next-slate-rte-plugin.min.js
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/next-plugin-manager
+[size-url]: https://github.com/afeiship/next-plugin-manager/blob/master/dist/next-plugin-manager.min.js
 
-[download-image]: https://img.shields.io/npm/dm/@jswork/next-slate-rte-plugin
-[download-url]: https://www.npmjs.com/package/@jswork/next-slate-rte-plugin
+[download-image]: https://img.shields.io/npm/dm/@jswork/next-plugin-manager
+[download-url]: https://www.npmjs.com/package/@jswork/next-plugin-manager
