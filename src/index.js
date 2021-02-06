@@ -14,18 +14,19 @@
       }
     },
     methods: {
-      init: function (inData) {
+      init: function (inData, inId) {
         this.entities = inData || [];
+        this.id = inId || 'id';
       },
       register: function (inEntity) {
-        if (!this.has(inEntity.name)) {
-          this.entities.push(stubEntity(inEntity.name, inEntity));
+        if (!this.has(inEntity[this.id])) {
+          this.entities.push(stubEntity(inEntity[this.id], inEntity));
         }
       },
       unregister: function (inName) {
         var idx = this.entities.findIndex(function (entity) {
-          return entity.name === inName;
-        });
+          return entity[[this.id]] === inName;
+        }, this);
         idx !== -1 && this.entities.splice(idx, 1);
       },
       enabled: function () {
@@ -65,15 +66,15 @@
       },
       set: function (inName, inEntity) {
         var idx = this.entities.findIndex(function (entity) {
-          return entity.name === inName;
-        });
+          return entity[[this.id]] === inName;
+        }, this);
         var entity = nx.mix(stubEntity(inName, inEntity));
         idx !== -1 && this.entities.splice(idx, 1, entity);
       },
       get: function (inName) {
         return this.entities.find(function (entity) {
-          return entity.name === inName;
-        });
+          return entity[this.id] === inName;
+        }, this);
       },
       sets: function (inObject) {
         var self = this;

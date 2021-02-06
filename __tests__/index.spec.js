@@ -1,6 +1,6 @@
 (function () {
   const NxPluginManager = require('../src');
-  const mgr = NxPluginManager.getInstance();
+  const mgr = NxPluginManager.getInstance(null, 'name');
 
   describe('mgr.methods', function () {
     beforeEach(function () {
