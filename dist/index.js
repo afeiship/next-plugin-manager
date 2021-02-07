@@ -3,7 +3,7 @@
  * description: Plugin manager for next.
  * homepage: https://github.com/afeiship/next-plugin-manager
  * version: 1.0.3
- * date: 2021-02-06 11:39:33
+ * date: 2021-02-07 13:32:31
  * license: MIT
  */
 
@@ -26,6 +26,9 @@
       init: function (inData, inId) {
         this.entities = inData || [];
         this.id = inId || 'id';
+      },
+      setOption: function (inOptions) {
+        nx.mix(this, inOptions);
       },
       register: function (inEntity) {
         if (!this.has(inEntity[this.id])) {

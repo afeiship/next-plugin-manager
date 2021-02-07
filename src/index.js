@@ -18,6 +18,9 @@
         this.entities = inData || [];
         this.id = inId || 'id';
       },
+      setOption: function (inOptions) {
+        nx.mix(this, inOptions);
+      },
       register: function (inEntity) {
         if (!this.has(inEntity[this.id])) {
           this.entities.push(stubEntity(inEntity[this.id], inEntity));
