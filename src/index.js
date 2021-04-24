@@ -8,11 +8,7 @@
   };
 
   var NxPluginManager = nx.declare('nx.PluginManager', {
-    statics: {
-      init: function () {
-        nx.mix(this, nxStubSingleton());
-      }
-    },
+    statics: nx.mix(null, nxStubSingleton()),
     methods: {
       init: function (inData, inId) {
         this.entities = inData || [];
