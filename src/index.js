@@ -15,9 +15,6 @@
         this.id = inId || 'id';
         (inData || []).forEach(this.register, this);
       },
-      registers: function (inItems) {
-        inItems.forEach(this.register, this);
-      },
       register: function (inEntity) {
         if (!this.has(inEntity[this.id])) {
           this.entities.push(stubEntity(inEntity[this.id], inEntity));
