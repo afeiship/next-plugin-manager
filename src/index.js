@@ -13,7 +13,7 @@
       init: function (inData, inId) {
         this.entities = [];
         this.id = inId || 'id';
-        this.registers(inData || []);
+        (inData || []).forEach(this.register, this);
       },
       registers: function (inItems) {
         inItems.forEach(this.register, this);
