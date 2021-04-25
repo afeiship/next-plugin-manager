@@ -11,11 +11,12 @@
     statics: nx.mix(null, nxStubSingleton()),
     methods: {
       init: function (inData, inId) {
-        this.entities = inData || [];
+        this.entities = [];
         this.id = inId || 'id';
+        this.registers(inData || []);
       },
-      setOption: function (inOptions) {
-        nx.mix(this, inOptions);
+      registers: function (inItems) {
+        inItems.forEach(this.register, this);
       },
       register: function (inEntity) {
         if (!this.has(inEntity[this.id])) {

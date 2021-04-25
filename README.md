@@ -14,7 +14,6 @@ npm install -S @jswork/next-plugin-manager
 ## apis
 | api        | params           | description                                   |
 | ---------- | ---------------- | --------------------------------------------- |
-| setOption  | inOptions        | Update options.                               |
 | register   | inEntity         | Add a plugin.                                 |
 | unregister | inName           | Remove a plugin by name.                      |
 | enabled    | -                | Get all enabled plugin.                       |

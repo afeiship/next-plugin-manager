@@ -7,6 +7,21 @@
       mgr.empty();
     });
 
+    test('api: init entities should have disabeld prop', () => {
+      var mg1 = NxPluginManager.getInstance(
+        [
+          { name: 'it1', value: 1 },
+          { name: 'it2', value: 2 }
+        ],
+        'name'
+      );
+
+      expect(mg1.gets()).toEqual([
+        { name: 'it1', value: 1, disabled: false },
+        { name: 'it2', value: 2, disabled: false }
+      ]);
+    });
+
     test('api:register - single', function () {
       mgr.register({
         name: 'p1',
