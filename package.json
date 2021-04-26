@@ -41,6 +41,7 @@
     "editor"
   ],
   "dependencies": {
+    "@jswork/next-id": "^1.0.0",
     "@jswork/next-stub-singleton": "^1.0.3"
   }
 }

@@ -2,10 +2,8 @@
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
   var nxStubSingleton = nx.stubSingleton || require('@jswork/next-stub-singleton');
+  var nxId = nx.id || require('@jswork/next-id');
   var DEFAULT_ENTITY = { disabled: false };
-  var stubEntity = function (inName, inEntity) {
-    return nx.mix(null, DEFAULT_ENTITY, { name: inName }, inEntity);
-  };
 
   var NxPluginManager = nx.declare('nx.PluginManager', {
     statics: nx.mix(null, nxStubSingleton()),
@@ -16,13 +14,16 @@
         (inData || []).forEach(this.register, this);
       },
       register: function (inEntity) {
-        if (!this.has(inEntity[this.id])) {
-          this.entities.push(stubEntity(inEntity[this.id], inEntity));
+        var name = (inEntity[this.id] = inEntity[this.id] || nxId());
+        if (!this.has(name)) {
+          var obj = nx.mix(null, DEFAULT_ENTITY, inEntity);
+          obj[this.id] = name;
+          this.entities.push(obj);
         }
       },
       unregister: function (inName) {
         var idx = this.entities.findIndex(function (entity) {
-          return entity[[this.id]] === inName;
+          return entity[this.id] === inName;
         }, this);
         idx !== -1 && this.entities.splice(idx, 1);
       },
@@ -62,11 +63,10 @@
         return !!this.get(inName);
       },
       set: function (inName, inEntity) {
-        var idx = this.entities.findIndex(function (entity) {
-          return entity[[this.id]] === inName;
+        var entity = this.entities.find(function (entity) {
+          return entity[this.id] === inName;
         }, this);
-        var entity = nx.mix(stubEntity(inName, inEntity));
-        idx !== -1 && this.entities.splice(idx, 1, entity);
+        entity && nx.mix(entity, inEntity);
       },
       get: function (inName) {
         return this.entities.find(function (entity) {

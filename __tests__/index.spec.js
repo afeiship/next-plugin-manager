@@ -7,6 +7,27 @@
       mgr.empty();
     });
 
+    test('api: nil name should be worked', () => {
+      var mg1 = NxPluginManager.getInstance([
+        { value: 11 },
+        { value: 22 },
+        { value: 33 },
+        { value: 44 },
+        { value: 55 }
+      ]);
+
+      mg1.register({ value: 66 });
+
+      expect(mg1.gets()).toEqual([
+        { disabled: false, value: 11, id: 1 },
+        { disabled: false, value: 22, id: 2 },
+        { disabled: false, value: 33, id: 3 },
+        { disabled: false, value: 44, id: 4 },
+        { disabled: false, value: 55, id: 5 },
+        { disabled: false, value: 66, id: 6 }
+      ]);
+    });
+
     test('api: init entities should have disabeld prop', () => {
       var mg1 = NxPluginManager.getInstance(
         [
@@ -33,15 +54,9 @@
     });
 
     test('api:register - multiple', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
 
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
       const entities = mgr.gets();
       expect(entities).toEqual([
         { disabled: false, name: 'p1', value: 1 },
@@ -143,20 +158,9 @@
     });
 
     test('api:set', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
-
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
-
-      mgr.set('p2', {
-        value: 'vv2',
-        disabled: true
-      });
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
+      mgr.set('p2', { value: 'vv2', disabled: true });
 
       const entities = mgr.gets();
       expect(entities).toEqual([
@@ -166,16 +170,8 @@
     });
 
     test('api:sets', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
-
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
-
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
       mgr.sets({
         p1: { value: 'vv1' },
         p2: { value: 'vv2', disabled: true }
@@ -189,29 +185,17 @@
     });
 
     test('api:get', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
 
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
       expect(mgr.get('p1')).toEqual({ disabled: false, name: 'p1', value: 1 });
       expect(mgr.get('p2')).toEqual({ disabled: false, name: 'p2', value: 2 });
     });
 
     test('api:gets', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
 
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
       expect(mgr.gets()).toEqual([
         { disabled: false, name: 'p1', value: 1 },
         { disabled: false, name: 'p2', value: 2 }
@@ -219,21 +203,9 @@
     });
 
     test('api:plugins - enabled/disabled', function () {
-      mgr.register({
-        name: 'p1',
-        value: 1
-      });
-
-      mgr.register({
-        name: 'p2',
-        value: 2
-      });
-
-      mgr.register({
-        name: 'p3',
-        value: 3,
-        disabled: true
-      });
+      mgr.register({ name: 'p1', value: 1 });
+      mgr.register({ name: 'p2', value: 2 });
+      mgr.register({ name: 'p3', value: 3, disabled: true });
 
       expect(mgr.enabled()).toEqual([
         { disabled: false, name: 'p1', value: 1 },
